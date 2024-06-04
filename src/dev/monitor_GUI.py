@@ -27,7 +27,7 @@ class VideoStreamApp:
         self.url_label = Label(self.frame, text="RTSP URL:")
         self.url_label.grid(row=0, column=0, sticky=tk.W)
         self.url_entry = Entry(self.frame, width=50)
-        self.url_entry.insert(0, 'rtsp://1.247.226.190:8554/')
+        self.url_entry.insert(0, 'rtsp://userurl:8554/')
         self.url_entry.grid(row=0, column=1, padx=5, pady=5)
 
         # 송출 영상 수신 시작 버튼

@@ -64,7 +64,7 @@ bash camera.sh
 
 ### 10. Raspberry Pi 1에서 데이터 리소스 정보 발행
 ```python
-python /home/user/MSC/cluster/Rasp-Producer/producer_app.py
+python Pi4-K3s-IoT-Monitoring-System/src/cluster/Rasp-Produer/producer_app.py
 ```
 
 ### 11. GUI에서 실시간 영상 및 시스템 리소스 보기

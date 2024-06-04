@@ -8,7 +8,7 @@ def connect_rabbitmq():
     RabbitMQ 연결 설정
     '''
     credentials = pika.PlainCredentials('bochan', 'bochan')
-    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost', 5672, '/', credentials))
+    connection = pika.BlockingConnection(pika.ConnectionParameters('1.247.226.190', 5672, '/', credentials))
     channel = connection.channel()
     return connection, channel
 
