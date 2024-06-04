@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telegraf
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: telegraf
+  template:
+    metadata:
+      labels:
+        app: telegraf
+    spec:
+      containers:
+      - name: telegraf
+        image: telegraf
+        volumeMounts:
+        - name: telegraf-config
+          mountPath: /etc/telegraf/telegraf.conf
+          subPath: ./telegraf.conf
+      volumes:
+      - name: telegraf-config
+        configMap:
+          name: telegraf-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: telegraf
+  namespace: monitoring
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8125
+      targetPort: 8125
+  selector:
+    app: telegraf

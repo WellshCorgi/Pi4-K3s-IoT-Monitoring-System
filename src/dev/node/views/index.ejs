@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring System Page!</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .info {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welecom to Monitoring System Page!</h1>
+        
+        <div class="info">
+            <h2>Real time infomation Monitoring From Edge Device</h2>
+            <p>해당 자원의 정보는 참여한 IoT (Raspberrypi4) 디바이스로 부터 실시간으로 전송 받고 있습니다.</p>
+            <p id="cpu-info">CPU 정보: 현재 사용률 - </p>
+            <p id="ram-info">RAM 정보: </p>
+        </div>
+        <button onclick="fetchData()">수동으로 데이터 새로고침</button>
+
+        <hr>
+        <!-- <label for="url">RTSP URL:</label>
+        <input type="text" id="url" value="rtsp://1.247.226.190:8554/">
+        <button onclick="startStream()">스트림 시작</button>
+        <button onclick="stopStream()">스트림 중지</button>
+        <video id="video" controls autoplay></video> -->
+        <p>추후 Rtsp Stream 을 지원하는 기능을 구현할 예정</p>
+        
+    </div>
+    <script src="script.js"></script>
+    <script>
+        function startStream() {
+            const url = document.getElementById('url').value;
+            const video = document.getElementById('video');
+            
+            // RTSP 스트림을 HTML5 비디오에서 직접 재생할 수 없습니다.
+            // 대신 스트림을 재생할 수 있는 middleware를 구축하거나
+            // 지원되는 형식으로 변환해야 합니다.
+
+            // WebRTC 또는 HLS로 변환 후 설정하는 방법의 예:
+            video.src = 'your-converted-stream-url';
+        }
+
+        function stopStream() {
+            const video = document.getElementById('video');
+            video.pause();
+            video.src = ''; // 스트림 중지
+        }
+
+        function fetchData() {
+            // 리소스 정보를 가져오는 예제 함수
+            // 실제 환경에서는 AJAX 요청을 사용해 데이터를 가져와야 합니다.
+            document.getElementById('cpu-info').innerText = 'CPU 정보: 현재 사용률 - 15%';
+            document.getElementById('ram-info').innerText = 'RAM 정보: 사용 중 - 512MB, 총 - 1GB';
+        }
+    </script>
+</body>
+</html>

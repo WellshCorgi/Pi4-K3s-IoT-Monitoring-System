@@ -1,0 +1,11 @@
+# 기본 이미지 설정
+FROM telegraf:1.21.1
+
+# Telegraf 구성 파일 복사
+COPY ./telegraf.conf /etc/telegraf/telegraf.conf
+
+# RabbitMQ 입력 플러그인 설치
+RUN telegraf plugins install telegraf-plugin-rabbitmq-consumer
+
+# Docker 컨테이너 실행 명령
+CMD ["telegraf"]

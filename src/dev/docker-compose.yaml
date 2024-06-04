@@ -1,0 +1,36 @@
+version: "3.7"
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "1883:1883"
+    environment:
+      - RABBITMQ_DEFAULT_USER=bochan
+      - RABBITMQ_DEFAULT_PASS=bochan
+    restart: unless-stopped
+
+  influxdb:
+    image: influxdb
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      - DOCKER_INFLUXDB_INIT_USERNAME=bochan
+      - DOCKER_INFLUXDB_INIT_PASSWORD=password
+      - DOCKER_INFLUXDB_INIT_ORG=bochanspace
+      - DOCKER_INFLUXDB_INIT_BUCKET=CPU-Measurement
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=influx-admin-token
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    restart: unless-stopped
